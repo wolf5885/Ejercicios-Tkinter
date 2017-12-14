@@ -28,10 +28,18 @@ mainForm = tk.Tk()
 mainForm.title("Hola TKINTER")
 mainForm.geometry("800x400")
 
-botonCargar = tk.Button(mainForm, text = "Cargar", command = cargar)
-botonCargar.place(x =20, y =20)
+mainMenu = tk.Menu(mainForm)
 
-botonMostrar = tk.Button(mainForm, text = "Mostrar", command = mostrar)
-botonMostrar.place(x =20, y =60)
+fileMenu = tk.Menu(mainMenu, tearoff = 0)
+fileMenu.add_command(label = "Salir", command = quit)
+mainMenu.add_cascade(label = "Archivo", menu = fileMenu)
+
+personMenu = tk.Menu(mainMenu, tearoff = 0)
+personMenu.add_command(label = "Cargar datos...", command = cargar)
+personMenu.add_command(label = "Mostrar datos...", command = mostrar)
+mainMenu.add_cascade(label = "Personas", menu = personMenu)
+
+mainForm.config(menu = mainMenu)
+
 
 mainForm.mainloop()
